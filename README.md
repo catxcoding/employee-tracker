@@ -17,14 +17,12 @@ Employee Tracker is a command-line application built with Node.js, MySQL, and In
 
 ## 📋 User Story
 
-````md
 AS A business owner
 I WANT to be able to view and manage the departments, roles, and employees in my company
 SO THAT I can organize and plan my business
 
 ## 📋 Acceptance Criteria
 
-```md
 GIVEN a command-line application that accepts user input
 WHEN I start the application
 THEN I am presented with the following options: view all departments, view all roles, view all employees, add a department, add a role, add an employee, and update an employee role
@@ -62,8 +60,15 @@ A walkthrough video demonstrating the functionality of the application can be fo
 
 Include screenshots or GIFs demonstrating the usage of your application.
 
+## 💡 Resources
+
+- MDN Web Docs
+- W3Schools
+- Node.js
+- MySQL
+- Inquirer
+- XPert Learning Assistant
+
 ## 📝 License
 
 This project is licensed under the MIT License.
-```
-````
