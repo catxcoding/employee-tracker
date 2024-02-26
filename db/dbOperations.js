@@ -17,7 +17,8 @@ const db = {
 
   // View all employees
   viewEmployees: async () => {
-    const query = `
+    try {
+      const query = `
       SELECT 
         e.id, e.first_name, e.last_name, r.title AS role, d.name AS department, r.salary, 
         CONCAT(m.first_name, ' ', m.last_name) AS manager
@@ -27,8 +28,11 @@ const db = {
         LEFT JOIN department d ON r.department_id = d.id
         LEFT JOIN employee m ON e.manager_id = m.id
     `;
-    const [rows] = await connection.promise().query(query);
-    console.table(rows);
+      const [rows] = await connection.promise().query(query);
+      console.table(rows);
+    } catch (error) {
+      console.error("Error fetching employees:", error);
+    }
   },
 
   // Add a department

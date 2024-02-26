@@ -78,7 +78,6 @@ async function init() {
         break;
     }
 
-    // Optionally, prompt the user again after completing an action
     init();
   } catch (error) {
     console.error(`An error occurred: ${error.message}`);
