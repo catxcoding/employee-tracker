@@ -58,7 +58,10 @@ A walkthrough video demonstrating the functionality of the application can be fo
 
 ## 📷 Screenshots
 
-Include screenshots or GIFs demonstrating the usage of your application.
+[Screen Recording](https://vimeo.com/919393285?share=copy)
+![Screen Shot 1](assets/screenshot1.JPG)
+![Screen Shot 2](assets/screenshot2.JPG)
+![Screen Shot 3](assets/screenshot3.JPG)
 
 ## 💡 Resources
 
