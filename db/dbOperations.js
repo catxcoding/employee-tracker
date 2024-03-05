@@ -44,10 +44,14 @@ const db = {
 
   // Add a role
   addRole: async (title, salary, departmentId) => {
-    const query = `INSERT INTO role (title, salary, department_id) VALUES (?, ?, ?)`;
-    await connection.promise().query(query, [title, salary, departmentId]);
-    console.log(`Role "${title}" added successfully.`);
-  },
+    try {
+      const query = `INSERT INTO role (title, salary, department_id) VALUES (?, ?, ?)`;
+      await connection.promise().query(query, [title, salary, departmentId]);
+      console.log(`Role "${title}" added successfully.`);
+    } catch (error) {
+      console.error(`Error adding role: ${error.message}`);
+    }
+  }, // Added comma here
 
   // Add an employee
   addEmployee: async (firstName, lastName, roleId, managerId) => {
@@ -126,4 +130,47 @@ const db = {
   },
 };
 
-module.exports = db;
+// Fetch all roles from the database
+const getRoles = async () => {
+  const query = `SELECT id, title FROM role`;
+  const [rows] = await connection.promise().query(query);
+  return rows;
+};
+
+// Fetch all managers from the database
+const getManagers = async () => {
+  const query = `SELECT id, first_name, last_name FROM employee WHERE manager_id IS NULL`;
+  const [rows] = await connection.promise().query(query);
+  return rows;
+};
+
+// Get the role ID based on the role title
+const getRoleId = async (title) => {
+  const query = `SELECT id FROM role WHERE title = ?`;
+  const [rows] = await connection.promise().query(query, [title]);
+  return rows[0].id;
+};
+
+// Get the department ID based on the department name
+const getDepartmentId = async (name) => {
+  const query = `SELECT id FROM department WHERE name = ?`;
+  const [rows] = await connection.promise().query(query, [name]);
+  return rows[0].id;
+};
+
+// Get the manager ID based on the manager's name
+const getManagerId = async (managerName) => {
+  const [firstName, lastName] = managerName.split(" ");
+  const query = `SELECT id FROM employee WHERE first_name = ? AND last_name = ?`;
+  const [rows] = await connection.promise().query(query, [firstName, lastName]);
+  return rows[0].id;
+};
+
+module.exports = {
+  ...db,
+  getRoles,
+  getManagers,
+  getRoleId,
+  getDepartmentId,
+  getManagerId,
+};
